@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Geist-Black.otf</string>
+		<string>Fonts/Geist-Bold.otf</string>
+		<string>Fonts/Geist-ExtraBold.otf</string>
+		<string>Fonts/Geist-ExtraLight.otf</string>
+		<string>Fonts/Geist-Light.otf</string>
+		<string>Fonts/Geist-Medium.otf</string>
+		<string>Fonts/Geist-Regular.otf</string>
+		<string>Fonts/Geist-SemiBold.otf</string>
+		<string>Fonts/Geist-Thin.otf</string>
+	</array>
+</dict>
+</plist>

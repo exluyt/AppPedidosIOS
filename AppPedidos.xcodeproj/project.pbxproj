@@ -45,6 +45,11 @@
 			path = AppPedidosUITests;
 			sourceTree = "<group>";
 		};
+		AC864C6F2D5E4A1800177E35 /* Fonts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 		AC38932C2D550AA0005AC748 = {
 			isa = PBXGroup;
 			children = (
+				AC864C6F2D5E4A1800177E35 /* Fonts */,
 				AC3893372D550AA0005AC748 /* AppPedidos */,
 				AC3893482D550AA1005AC748 /* AppPedidosTests */,
 				AC3893522D550AA1005AC748 /* AppPedidosUITests */,
@@ -109,6 +115,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				AC3893372D550AA0005AC748 /* AppPedidos */,
+				AC864C6F2D5E4A1800177E35 /* Fonts */,
 			);
 			name = AppPedidos;
 			packageProductDependencies = (
@@ -398,6 +405,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppPedidos/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppPedidos/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,6 +434,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppPedidos/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppPedidos/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
