@@ -29,7 +29,7 @@ struct ContentView: View {
                     
                 }label: {
                     Image(systemName: "person.circle.fill")
-                }
+                }	
                 
             }
             .font(.custom("Geist-Black", size: 24))
@@ -55,6 +55,7 @@ struct ContentView: View {
                             .foregroundStyle(.black),
                             alignment: .bottom
                     )
+                    .font(.custom("Geist-Medium", size: 20))
                     
                 Spacer()
                     .frame(height: 100)
@@ -70,8 +71,11 @@ struct ContentView: View {
                         .foregroundStyle(.black),
                         alignment: .bottom
                 )
+                .font(.custom("Geist-Medium", size: 20))
+
         }
         .padding(0)
+        Spacer()
     }
 
 }
