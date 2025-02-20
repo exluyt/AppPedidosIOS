@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var profileOpen = false
     var body: some View {
         VStack {
             HStack{
@@ -26,10 +27,13 @@ struct ContentView: View {
                     Image(systemName: "cart.fill")
                 }
                 Button{
-                    
+                    profileOpen = true
                 }label: {
                     Image(systemName: "person.circle.fill")
-                }	
+                }.sheet(isPresented: $profileOpen) {
+                    ProfileView()
+                    .presentationDetents([.medium, .large])
+                }
                 
             }
             .font(.custom("Geist-Black", size: 24))
