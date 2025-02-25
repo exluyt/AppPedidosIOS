@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isProfilePresented = false
     @State private var profileOpen = false
     var body: some View {
         VStack {
@@ -31,7 +32,8 @@ struct ContentView: View {
                 }label: {
                     Image(systemName: "person.circle.fill")
                 }.sheet(isPresented: $profileOpen) {
-                    ProfileView()
+                    
+                    ProfileView(isPresented: $profileOpen)
                     .presentationDetents([.medium, .large])
                 }
                 
