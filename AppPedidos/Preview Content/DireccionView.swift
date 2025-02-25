@@ -7,38 +7,66 @@
 
 import SwiftUI
 
+struct Address {
+    let email: String
+    let name: String
+    let phone: String
+    let street: String
+    let streetNumber: Int
+    let portal: String
+    let postalCode: String
+    let cityProvince: String
+}
+
 struct DireccionView: View {
     @State private var profileOpen = false
+    
+    // Creamos una dirección de ejemplo
+    @State private var address = Address(
+        email: "comotutellamas@gmail.com",
+        name: "Hiromy",
+        phone: "123456789",
+        street: "Calle Falsa",
+        streetNumber: 123,
+        portal: "B",
+        postalCode: "28080",
+        cityProvince: "Madrid, España"
+    )
+    
     var body: some View {
-        VStack{
-            HStack{
-                Button (){
+        VStack {
+            HStack {
+                Button {
                     
-                }label: {
+                } label: {
                     Image(systemName: "arrow.left")
                 }
-                Text("Billings Addreses")
-                    .font(.custom("Geist-medium", size: 18))
+                
+                Text("Billing Addresses")
+                    .font(.custom("Geist-Medium", size: 18))
+                
                 Spacer()
-                Button{
+                
+                Button {
                     
-                }label: {
+                } label: {
                     Image(systemName: "magnifyingglass")
                 }
                 
-                Button{
+                Button {
                     
-                }label: {
+                } label: {
                     Image(systemName: "cart.fill")
                 }
-                Button{
+                
+                Button {
                     profileOpen = true
-                }label: {
+                } label: {
                     Image(systemName: "person.circle.fill")
-                }.sheet(isPresented: $profileOpen) {
-                    
+                }
+                .sheet(isPresented: $profileOpen) {
                     ProfileView(isPresented: $profileOpen)
-                    .presentationDetents([.medium, .large])
+                        .presentationDetents([.medium, .large])
                 }
                 
             }
@@ -51,12 +79,41 @@ struct DireccionView: View {
                     .foregroundColor(.black),
                 alignment: .bottom
             )
-            Spacer()
             
+            VStack {
+                HStack {
+                    Rectangle()
+                        .frame(width: 40, height: 40, alignment: .top)
+                    
+                    VStack(alignment: .leading) {
+                        Text("\(address.name)  \(address.phone)")
+                        Text("\(address.street) \(address.streetNumber)  Portal \(address.portal)")
+                        Text("\(address.postalCode)  \(address.cityProvince)")
+                        
+                        Button{
+                            
+                        }label: {
+                            Text("Edit")
+                        }
+                    }
+                    .font(.custom("Geist-Regular", size: 14))
+                    
+                    Spacer()
+ 
+                }
+            }.overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundStyle(.black),
+                alignment: .bottom
+            ) .frame(width: UIScreen.main.bounds.width * 0.9)
         }
+        .padding(0)
+        Spacer()
     }
 }
 
 #Preview {
     DireccionView()
 }
+
