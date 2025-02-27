@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isProfilePresented = false
-
+    @State private var title = "LootBox Store"
     var body: some View {
         VStack {
-            HeaderBar()
+            HeaderBar(title: title, search: true, cart: true, profile: true)
             
             Section{
                 Text("Waos")
