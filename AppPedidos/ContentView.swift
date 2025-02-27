@@ -93,77 +93,29 @@ struct MainView: View {
 }
 
 struct ContentView: View {
+    @State private var isProfilePresented = false
+    @State private var title = "LootBox Store"
     @StateObject var viewModel = GameViewModel()
-    
     var body: some View {
         VStack {
-            HStack {
-                Text("PlaceHolder")
-                
-                Spacer()
-                Button {
-                    // Acción de búsqueda
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                }
-                
-                Button {
-                    // Acción de carrito
-                } label: {
-                    Image(systemName: "cart.fill")
-                }
-                
-                Button {
-                    // Acción de perfil
-                } label: {
-                    Image(systemName: "person.circle.fill")
-                }
-                
-            }
-            .font(.custom("Geist-Black", size: 24))
-            .accentColor(Color.black)
-            .padding(8)
-            .overlay(
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(.black),
-                alignment: .bottom
-            )
+            HeaderBar(title: title, search: true, cart: true, profile: true)
             
-            // "Suggestions for you"
-            Section {
-                Text("Suggestions for you")
-                    .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                    .overlay(
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundStyle(.black),
-                        alignment: .bottom
-                    )
-                    .font(.custom("Geist-Medium", size: 20))
+            TitleLine(title:"Suggestions for you")
+            
+                Spacer()
+                    .frame(height: 100)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.games) { game in
-                            GameRow(game: game)
                                 .padding()
+                            GameRow(game: game)
                         }
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
-            }
             
-            // "Strategy"
-            Text("Strategy")
-                .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                .overlay(
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundStyle(.black),
-                    alignment: .bottom
-                )
-                .font(.custom("Geist-Medium", size: 20))
-            
+            TitleLine(title:"Strategy")
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(viewModel.strategyGames) { game in
