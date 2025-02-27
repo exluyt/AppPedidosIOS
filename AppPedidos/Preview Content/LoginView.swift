@@ -11,7 +11,7 @@ import CryptoKit
 
 struct LoginView: View {
     @Binding var isLoggedIn: Bool
-    @State private var email = ""
+    @Binding var email: String
     @State private var password = ""
     @State private var errorMessage = ""
     @Environment(\.dismiss) var dismiss

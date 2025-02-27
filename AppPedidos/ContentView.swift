@@ -83,11 +83,12 @@ struct ContentView: View {
     @State private var title = "LootBox Store"
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
+    @State var email = ""
     var body: some View {
         
         NavigationView{
             VStack {
-                HeaderBar(isLoggedIn: $isLoggedIn, title: title, search: true, cart: true, profile: true)
+                HeaderBar(email: email, isLoggedIn: $isLoggedIn, title: title, search: true, cart: true, profile: true)
                 
                 TitleLine(title:"Suggestions for you")
                 
@@ -106,7 +107,6 @@ struct ContentView: View {
                     HStack {
                         ForEach(viewModel.strategyGames) { game in
                             GameRow(game: game)
-                                .padding()
                         }
                     }
                 }

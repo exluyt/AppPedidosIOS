@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeaderBar: View {
     @State private var profileOpen = false
+    @State var email: String
     @Binding var isLoggedIn: Bool
     let title:String
     let search:Bool
@@ -33,7 +34,7 @@ struct HeaderBar: View {
             }
             if profile {
                 if !isLoggedIn {
-                    NavigationLink(destination: LoginView(isLoggedIn: $isLoggedIn)) {
+                    NavigationLink(destination: LoginView(isLoggedIn: $isLoggedIn, email: $email)) {
                         Image(systemName: "person.circle.fill")
                     }
                 } else {
@@ -47,7 +48,7 @@ struct HeaderBar: View {
             }
         }
         .sheet(isPresented: $profileOpen) {
-            ProfileView(isPresented: $profileOpen)
+            ProfileView(isPresented: $profileOpen, mail: $email)
                 .presentationDetents([.medium, .large])
         }
         .font(.custom("Geist-Black", size: 24))

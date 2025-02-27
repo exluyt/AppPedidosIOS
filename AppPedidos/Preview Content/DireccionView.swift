@@ -65,8 +65,8 @@ struct DireccionView: View {
                     Image(systemName: "person.circle.fill")
                 }
                 .sheet(isPresented: $profileOpen) {
-                    ProfileView(isPresented: $profileOpen)
-                        .presentationDetents([.medium, .large])
+                   // ProfileView(isPresented: $profileOpen, email: <#T##Binding<String>#>)
+                   //     .presentationDetents([.medium, .large])
                 }
                 
             }
