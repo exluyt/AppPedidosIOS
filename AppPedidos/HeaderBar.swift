@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeaderBar: View {
     @State private var profileOpen = false
+    @Binding var isLoggedIn: Bool
     let title:String
     let search:Bool
     let cart:Bool
@@ -17,24 +18,37 @@ struct HeaderBar: View {
         HStack{
             Text(title)
             Spacer()
-            if(search){
+            if search {
                 Button{
                     
                 }label: {
                     Image(systemName: "magnifyingglass")
                 }
             }
-            if(cart){
+            if cart {
                 Button{
                 }label: {
                     Image(systemName: "cart.fill")
                 }
             }
-            if(profile){
-                NavigationLink(destination: LoginView(isLoggedIn: .constant(false))) {
-                    Image(systemName: "person.circle.fill")
+            if profile {
+                if !isLoggedIn {
+                    NavigationLink(destination: LoginView(isLoggedIn: $isLoggedIn)) {
+                        Image(systemName: "person.circle.fill")
+                    }
+                } else {
+                    Button {
+                        profileOpen.toggle()
+                    } label: {
+                        Image(systemName: "person.circle.fill")
+                    }
                 }
+
             }
+        }
+        .sheet(isPresented: $profileOpen) {
+            ProfileView(isPresented: $profileOpen)
+                .presentationDetents([.medium, .large])
         }
         .font(.custom("Geist-Black", size: 24))
         .accentColor(Color.black)

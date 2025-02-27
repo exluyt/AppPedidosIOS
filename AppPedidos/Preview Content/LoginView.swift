@@ -63,10 +63,12 @@ struct LoginView: View {
     func loginUser(email: String, password: String) {
         let hashedPwd = hashPassword(password: password)
         if checkLoginArray(email: email, password: hashedPwd) {
+            isLoggedIn = true
             dismiss()
         } else {
             Auth.auth().signIn(withEmail: email, password: password) { _, error in
                 if error == nil {
+                    isLoggedIn = true
                     dismiss()
                 } else {
                     errorMessage = "Error: Usuario o contraseña incorrectos"

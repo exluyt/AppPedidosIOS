@@ -77,30 +77,17 @@ class GameViewModel: ObservableObject {
     }
 }
 
-// Vista principal donde se muestran los juegos
-struct MainView: View {
-    @State private var isLoggedIn = false
-    
-    var body: some View {
-        NavigationStack {
-            if !isLoggedIn {
-                ContentView()
-            } else {
-                LoginView(isLoggedIn: $isLoggedIn)
-            }
-        }
-    }
-}
 
 struct ContentView: View {
     @State private var isProfilePresented = false
     @State private var title = "LootBox Store"
     @StateObject var viewModel = GameViewModel()
+    @State var isLoggedIn = false
     var body: some View {
         
         NavigationView{
             VStack {
-                HeaderBar(title: title, search: true, cart: true, profile: true)
+                HeaderBar(isLoggedIn: $isLoggedIn, title: title, search: true, cart: true, profile: true)
                 
                 TitleLine(title:"Suggestions for you")
                 
