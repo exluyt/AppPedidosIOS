@@ -97,41 +97,44 @@ struct ContentView: View {
     @State private var title = "LootBox Store"
     @StateObject var viewModel = GameViewModel()
     var body: some View {
-        VStack {
-            HeaderBar(title: title, search: true, cart: true, profile: true)
-            
-            TitleLine(title:"Suggestions for you")
-            
-                Spacer()
-                    .frame(height: 100)
+        
+        NavigationView{
+            VStack {
+                HeaderBar(title: title, search: true, cart: true, profile: true)
+                
+                TitleLine(title:"Suggestions for you")
+                
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.games) { game in
-                                .padding()
                             GameRow(game: game)
                         }
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
-            
-            TitleLine(title:"Strategy")
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(viewModel.strategyGames) { game in
-                        GameRow(game: game)
-                            .padding()
+                
+                TitleLine(title:"Strategy")
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.strategyGames) { game in
+                            GameRow(game: game)
+                                .padding()
+                        }
                     }
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.9)
             }
-            .frame(width: UIScreen.main.bounds.width * 0.9)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .onAppear {
+                viewModel.fetchGames(appName: "")  // Cargar juegos sin categoría para "Suggestions for you"
+                viewModel.fetchGames(category: "strategy")  // Cargar juegos de la categoría "strategy"
+            }
+            .padding(0)
+            
         }
-        .onAppear {
-            viewModel.fetchGames(appName: "")  // Cargar juegos sin categoría para "Suggestions for you"
-            viewModel.fetchGames(category: "strategy")  // Cargar juegos de la categoría "strategy"
-        }
-        .padding(0)
-        Spacer()
+
+        
     }
 }
 

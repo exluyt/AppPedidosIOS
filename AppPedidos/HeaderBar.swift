@@ -31,13 +31,8 @@ struct HeaderBar: View {
                 }
             }
             if(profile){
-                Button{
-                    profileOpen = true
-                }label: {
+                NavigationLink(destination: LoginView(isLoggedIn: .constant(false))) {
                     Image(systemName: "person.circle.fill")
-                }.sheet(isPresented: $profileOpen) {
-                    ProfileView(isPresented: $profileOpen)
-                        .presentationDetents([.medium, .large])
                 }
             }
         }
