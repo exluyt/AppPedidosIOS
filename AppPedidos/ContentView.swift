@@ -14,33 +14,13 @@ struct ContentView: View {
         VStack {
             HeaderBar(title: title, search: true, cart: true, profile: true)
             
-            Section{
-                Text("Waos")
-                    .frame(width: UIScreen.main.bounds.width * 0.9,
-                           alignment: .leading )
-                    .overlay(
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundStyle(.black),
-                            alignment: .bottom
-                    )
-                    .font(.custom("Geist-Medium", size: 20))
-                    
+            TitleLine(title:"Suggestions for you")
+            
                 Spacer()
                     .frame(height: 100)
                 
-            }
             
-            Text("Waos 2")
-                .frame(width: UIScreen.main.bounds.width * 0.9,
-                       alignment: .leading )
-                .overlay(
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundStyle(.black),
-                        alignment: .bottom
-                )
-                .font(.custom("Geist-Medium", size: 20))
+            TitleLine(title:"Strategy")
 
         }
         .padding(0)
