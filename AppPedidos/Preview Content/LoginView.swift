@@ -14,6 +14,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var errorMessage = ""
+    @Environment(\.dismiss) var dismiss
     private let login: [String: String] = ["ex@gmail.com": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"]
     
     var body: some View {
@@ -62,11 +63,11 @@ struct LoginView: View {
     func loginUser(email: String, password: String) {
         let hashedPwd = hashPassword(password: password)
         if checkLoginArray(email: email, password: hashedPwd) {
-            isLoggedIn = true
+            dismiss()
         } else {
             Auth.auth().signIn(withEmail: email, password: password) { _, error in
                 if error == nil {
-                    isLoggedIn = true
+                    dismiss()
                 } else {
                     errorMessage = "Error: Usuario o contraseña incorrectos"
                 }
