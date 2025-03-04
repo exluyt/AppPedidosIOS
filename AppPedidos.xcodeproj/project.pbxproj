@@ -30,11 +30,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		AC3893372D550AA0005AC748 /* AppPedidos */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AppPedidos;
-			sourceTree = "<group>";
-		};
 		AC3893482D550AA1005AC748 /* AppPedidosTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AppPedidosTests;
@@ -43,6 +38,11 @@
 		AC3893522D550AA1005AC748 /* AppPedidosUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AppPedidosUITests;
+			sourceTree = "<group>";
+		};
+		ACE6BD792D7783530023939C /* AppPedidos */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AppPedidos;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +75,7 @@
 		AC38932C2D550AA0005AC748 = {
 			isa = PBXGroup;
 			children = (
-				AC3893372D550AA0005AC748 /* AppPedidos */,
+				ACE6BD792D7783530023939C /* AppPedidos */,
 				AC3893482D550AA1005AC748 /* AppPedidosTests */,
 				AC3893522D550AA1005AC748 /* AppPedidosUITests */,
 				AC3893362D550AA0005AC748 /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AC3893372D550AA0005AC748 /* AppPedidos */,
+				ACE6BD792D7783530023939C /* AppPedidos */,
 			);
 			name = AppPedidos;
 			packageProductDependencies = (

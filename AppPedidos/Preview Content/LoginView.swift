@@ -19,31 +19,52 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Text("Login")
+                .frame(width: UIScreen.main.bounds.width * 0.9,
+                       alignment: .leading )
+                .font(.custom("geist-semi-bold", size: 24))
+            
+            Image(.el)
                 .imageScale(.large)
                 .font(.custom("AppLogo", size: 80))
+            
+            Text("LootBox Store")
+                .frame(width: UIScreen.main.bounds.width * 0.9,
+                       alignment: .center )
+                .font(.custom("geist-semi-bold", size: 24))
+            
             Form {
                 Section {
-                    HStack {
+                    VStack {
                         Text("Email")
-                        Spacer(minLength: 55)
-                        TextField("example@gmail.com", text: $email)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding(0)
+                        TextField("", text: $email)
+                            .frame(height: 50)
                             .keyboardType(.emailAddress)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .background(RoundedRectangle(cornerRadius: 15).fill(Color("Gray")))
+                            .foregroundColor(Color.white)
                             .autocapitalization(.none)
-                    }
-                    HStack {
+                        
                         Text("Contraseña")
-                        Spacer()
-                        SecureField("********", text: $password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding(0)
+                        SecureField("", text: $password)
+                            .frame(height: 50)
+                            .background(RoundedRectangle(cornerRadius: 15).fill(Color("Gray")))
+                            .foregroundColor(Color.white)
                     }
+                    
                 }
-                .listRowBackground(Color.gray)
+                .listRowBackground(Color("White_90"))
             }
-            .frame(maxHeight: 150)
             .scrollDisabled(true)
             .scrollContentBackground(.hidden)
+             
+            Button("Login") {
+                loginUser(email: email, password: password)
+            }
+            .buttonStyle(.borderedProminent)
             
             if !errorMessage.isEmpty {
                 Text(errorMessage)
@@ -51,12 +72,8 @@ struct LoginView: View {
                     .padding()
             }
             
-            Button("Login") {
-                loginUser(email: email, password: password)
-            }
-            .buttonStyle(.borderedProminent)
-            .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
     }
     
