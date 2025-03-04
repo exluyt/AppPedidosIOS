@@ -81,8 +81,12 @@ struct ContentView: View {
     @State private var isProfilePresented = false
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
-    @State var email = "ex@example.com"
-    let cartManager = CartManager(userEmail: "ex@example.com")
+    @State var email = ""
+    let cartManager: CartManager
+
+    init(email: String) {
+        self.cartManager = CartManager(userEmail: email)  // 
+    }
 
     var body: some View {
         NavigationView {
