@@ -24,7 +24,7 @@ struct LoginView: View {
                        alignment: .leading )
                 .font(.custom("geist-semi-bold", size: 24))
             
-            Image(.el)
+            Image(.logo)
                 .imageScale(.large)
                 .font(.custom("AppLogo", size: 80))
             
