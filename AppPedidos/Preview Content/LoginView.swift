@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseAuth
+//import FirebaseAuth
 import CryptoKit
 
 struct LoginView: View {
@@ -66,14 +66,14 @@ struct LoginView: View {
             isLoggedIn = true
             dismiss()
         } else {
-            Auth.auth().signIn(withEmail: email, password: password) { _, error in
-                if error == nil {
+            //Auth.auth().signIn(withEmail: email, password: password) { _, error in
+                //if error == nil {
                     isLoggedIn = true
                     dismiss()
-                } else {
+                //} else {
                     errorMessage = "Error: Usuario o contraseña incorrectos"
-                }
-            }
+                //}
+            //}
         }
     }
     
