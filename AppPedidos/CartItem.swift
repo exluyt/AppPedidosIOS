@@ -28,6 +28,8 @@ class CartManager: ObservableObject {
 
     func saveCart() {
         guard let fileURL = getFilePath() else { return }
+        
+        // Solo guarda los datos del usuario si el email coincide
         let cartData = [userEmail: cartGames]
         
         do {
@@ -41,14 +43,20 @@ class CartManager: ObservableObject {
         }
     }
 
-
     func loadCart() {
         guard let fileURL = getFilePath() else { return }
         
         do {
             let data = try Data(contentsOf: fileURL)
             let decodedData = try JSONDecoder().decode([String: [Game]].self, from: data)
-            self.cartGames = decodedData[userEmail] ?? []
+            
+            // Solo carga el carrito si el email del archivo coincide con el proporcionado
+            if let savedCart = decodedData[userEmail] {
+                self.cartGames = savedCart
+            } else {
+                self.cartGames = []  // Si no hay coincidencia, carga un carrito vacío
+                print("No se encontró carrito para este email.")
+            }
         } catch {
             print("Error al cargar el carrito: \(error.localizedDescription)")
         }
@@ -65,3 +73,4 @@ class CartManager: ObservableObject {
         saveCart()
     }
 }
+
