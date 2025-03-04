@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ProfileView: View{
     @Binding var isPresented: Bool
-    
+    @Binding var mail: String
     @State private var is_on_notifications = false
     @State private var username = "Hiromy"
-    @State private var mail = "comotutellamas@gmail.com"
     @State private var direccion = "Add Direction"
     @State private var is_presented = false;
     var body: some View {

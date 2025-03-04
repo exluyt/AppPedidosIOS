@@ -22,7 +22,7 @@ class GameViewModel: ObservableObject {
     @Published var strategyGames = [Game]() // Para juegos de estrategia
     
     func fetchGames(appName: String = "", category: String = "") {
-        guard let url = URL(string: "http://10.100.28.112:5000/buscar_app") else { return }
+        guard let url = URL(string: "http://10.100.24.95:5000/buscar_app") else { return }
         
         // Si appName está vacío, no lo incluyes; si category tiene valor, lo incluyes
         var parameters: [String: Any] = ["app_name": appName, "n_hits": 10]
@@ -83,11 +83,12 @@ struct ContentView: View {
     @State private var title = "LootBox Store"
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
+    @State var email = ""
     var body: some View {
         
         NavigationView{
             VStack {
-                HeaderBar(isLoggedIn: $isLoggedIn, title: title, search: true, cart: true, profile: true)
+                HeaderBar(email: email, isLoggedIn: $isLoggedIn, title: title, search: true, cart: true, profile: true)
                 
                 TitleLine(title:"Suggestions for you")
                 
@@ -106,7 +107,6 @@ struct ContentView: View {
                     HStack {
                         ForEach(viewModel.strategyGames) { game in
                             GameRow(game: game)
-                                .padding()
                         }
                     }
                 }
