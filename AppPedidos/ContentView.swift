@@ -25,7 +25,7 @@ class GameViewModel: ObservableObject {
     @Published var strategyGames = [Game]() // Para juegos de estrategia
     
     func fetchGames(appName: String = "", category: String = "") {
-        guard let url = URL(string: "http://10.100.24.95:5000/buscar_app") else { return }
+        guard let url = URL(string: "http://10.100.25.195:5000/buscar_app") else { return }
         
         var parameters: [String: Any] = ["app_name": appName, "n_hits": 10]
         if !category.isEmpty {
@@ -82,11 +82,7 @@ struct ContentView: View {
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
     @State var email = ""
-    let cartManager: CartManager
-
-    init(email: String) {
-        self.cartManager = CartManager(userEmail: email)  // 
-    }
+    @StateObject var cartManager = CartManager(userEmail: "")
 
     var body: some View {
         NavigationView {
@@ -117,9 +113,13 @@ struct ContentView: View {
                 viewModel.fetchGames(appName: "")
                 viewModel.fetchGames(category: "strategy")
             }
+            .onChange(of: email) { newEmail in
+                cartManager.updateEmail(newEmail)
+            }
         }
     }
 }
+
 
 // Vista para mostrar cada fila de un juego
 struct GameRow: View {

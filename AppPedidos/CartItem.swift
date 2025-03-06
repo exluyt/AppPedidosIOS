@@ -8,10 +8,15 @@
 
 import Foundation
 
+struct CartData: Codable {
+    let userEmail: String
+    var cartGames: [Game]
+}
+
 class CartManager: ObservableObject {
     @Published var cartGames: [Game] = []
-    let userEmail: String
-    let fileName = "cart.json"
+    var userEmail: String
+    private let fileName = "cart.json"
 
     init(userEmail: String) {
         self.userEmail = userEmail
@@ -20,22 +25,16 @@ class CartManager: ObservableObject {
 
     private func getFilePath() -> URL? {
         guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        
-        let fileURL = dir.appendingPathComponent(fileName)
-        print("Ruta del archivo JSON: \(fileURL.path)")
-        return fileURL
+        return dir.appendingPathComponent(fileName)
     }
 
     func saveCart() {
         guard let fileURL = getFilePath() else { return }
-        
-        // Solo guarda los datos del usuario si el email coincide
-        let cartData = [userEmail: cartGames]
-        
+
+        let cartData = CartData(userEmail: userEmail, cartGames: cartGames)
+
         do {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            let data = try encoder.encode(cartData)
+            let data = try JSONEncoder().encode(cartData)
             try data.write(to: fileURL)
             print("Carrito guardado correctamente en \(fileURL.path)")
         } catch {
@@ -45,16 +44,15 @@ class CartManager: ObservableObject {
 
     func loadCart() {
         guard let fileURL = getFilePath() else { return }
-        
+
         do {
             let data = try Data(contentsOf: fileURL)
-            let decodedData = try JSONDecoder().decode([String: [Game]].self, from: data)
-            
-            // Solo carga el carrito si el email del archivo coincide con el proporcionado
-            if let savedCart = decodedData[userEmail] {
-                self.cartGames = savedCart
+            let decodedData = try JSONDecoder().decode(CartData.self, from: data)
+
+            if decodedData.userEmail == userEmail {
+                self.cartGames = decodedData.cartGames
             } else {
-                self.cartGames = []  // Si no hay coincidencia, carga un carrito vacío
+                self.cartGames = []
                 print("No se encontró carrito para este email.")
             }
         } catch {
@@ -64,13 +62,18 @@ class CartManager: ObservableObject {
 
     func addGameToCart(game: Game) {
         if let index = cartGames.firstIndex(where: { $0.name == game.name }) {
-            cartGames[index].installed.toggle() // Cambia el estado de instalación
+            cartGames[index].installed.toggle()
         } else {
             var newGame = game
-            newGame.installed = false  // Se añade con instalado en falso
+            newGame.installed = true
             cartGames.append(newGame)
         }
         saveCart()
+    }
+
+    func updateEmail(_ newEmail: String) {
+        userEmail = newEmail
+        loadCart()
     }
 }
 
