@@ -81,32 +81,17 @@ struct DireccionView: View {
             )
             
             VStack {
-                HStack {
-                    Rectangle()
-                        .frame(width: 40, height: 40, alignment: .top)
+                DirectionItem(address: address)
+                DirectionItem(address: address)
+                DirectionItem(address: address)
+                DirectionItem(address: address)
+                Button {
                     
-                    VStack(alignment: .leading) {
-                        Text("\(address.name)  \(address.phone)")
-                        Text("\(address.street) \(address.streetNumber)  Portal \(address.portal)")
-                        Text("\(address.postalCode)  \(address.cityProvince)")
-                        
-                        Button{
-                            
-                        }label: {
-                            Text("Edit")
-                        }
-                    }
-                    .font(.custom("Geist-Regular", size: 14))
-                    
-                    Spacer()
- 
+                }label: {
+                    Text("add Direction")
                 }
-            }.overlay(
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundStyle(.black),
-                alignment: .bottom
-            ) .frame(width: UIScreen.main.bounds.width * 0.9)
+                .buttonStyle(.borderedProminent)
+            }
         }
         .padding(0)
         Spacer()
