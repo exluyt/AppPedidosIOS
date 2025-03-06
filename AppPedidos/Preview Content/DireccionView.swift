@@ -33,29 +33,9 @@ struct DireccionView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "arrow.left")
-                }
-                
-                Text("Billing Addresses")
-                    .font(.custom("Geist-Medium", size: 18))
-                
-                Spacer()
-            }
-            .font(.custom("Geist-Black", size: 24))
-            .accentColor(Color.black)
-            .padding(8)
-            .overlay(
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(.black),
-                alignment: .bottom
-            )
-            
             VStack {
+                Text("waos")
+                    .font(.custom("Geist-Regular", size: 20))
                 DirectionItem(address: address)
                 DirectionItem(address: address)
                 DirectionItem(address: address)

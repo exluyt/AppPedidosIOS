@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Geist-Black</string>
+		<string>Geist-Bold</string>
+		<string>Geist-ExtraBold</string>
+		<string>Geist-ExtraLight</string>
+		<string>Geist-Light</string>
+		<string>Geist-Medium</string>
+		<string>Geist-Regular</string>
+		<string>Geist-SemiBold</string>
+		<string>Geist-Thin</string>
+	</array>
+</dict>
+</plist>

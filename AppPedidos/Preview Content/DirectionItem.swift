@@ -19,7 +19,8 @@ struct DirectionItem: View {
                     Text("\(address.postalCode)  \(address.cityProvince)")
                     
                 }
-                .font(.custom("Geist-Regular", size: 14))
+                .font(.custom("Geist-Black", size: 16))
+                .foregroundColor(Color("White"))
                 Spacer()
                 Rectangle()
                     .frame(width: 40, height: 40, alignment: .top)
@@ -37,6 +38,6 @@ struct DirectionItem: View {
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 10))
         }
         .frame(width: UIScreen.main.bounds.width * 0.9)
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray))
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("Gray")))
     }
 }
