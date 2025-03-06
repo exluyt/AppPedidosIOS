@@ -101,7 +101,7 @@ struct ContentView: View {
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
-
+                
                 TitleLine(title: "Strategy")
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -117,6 +117,8 @@ struct ContentView: View {
                 if !email.isEmpty {
                     cartManager.updateEmail(email)
                 }
+                viewModel.fetchGames(appName: "")
+                viewModel.fetchGames(category: "strategy")
             }
         }
     }

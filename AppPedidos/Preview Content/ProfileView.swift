@@ -14,6 +14,7 @@ struct ProfileView: View{
     @State private var username = "Hiromy"
     @State private var direccion = "Add Direction"
     @State private var is_presented = false;
+    @Binding var isLoggedIn: Bool
     var body: some View {
         VStack{
             Text("Profile")
@@ -49,6 +50,8 @@ struct ProfileView: View{
             
             Button("Log out", role: .destructive) {
                 is_presented = true
+                isLoggedIn = false;
+                mail = ""
             }
             .alert("Are you sure?", isPresented: $is_presented) {
                 Button("Log Out", role: .destructive) {
