@@ -15,6 +15,7 @@ struct ProfileView: View{
     @State private var direccion = "Add Direction"
     @State private var is_presented = false;
     @Binding var isLoggedIn: Bool
+    @Binding var changeDirection: Bool
     var body: some View {
         VStack{
             Text("Profile")
@@ -28,7 +29,8 @@ struct ProfileView: View{
                     Text(username)
                     Text(mail)
                         Button {
-                            
+                            isPresented = false;
+                            changeDirection = true;
                         }label: {
                             Text(direccion)
                             Image(systemName: "arrow.right")

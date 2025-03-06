@@ -91,7 +91,8 @@ struct ContentView: View {
     var body: some View {
         return NavigationView {
             VStack {
-                HeaderBar(cartManager: cartManager, email: $email, isLoggedIn: $isLoggedIn, title: "LootBox Store", search: true, cart: true, profile: true)
+                HeaderBar(cartManager: cartManager, email: $email, isLoggedIn: $isLoggedIn, title: "LootBox Store", search: true, cart: true, profile: true, changeDirection: false)
+                
                 TitleLine(title: "Suggestions for you")
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {

@@ -16,6 +16,7 @@ struct HeaderBar: View {
     let search: Bool
     let cart: Bool
     let profile: Bool
+    @State var changeDirection: Bool
 
     var body: some View {
         HStack {
@@ -46,8 +47,9 @@ struct HeaderBar: View {
             }
         }
         .sheet(isPresented: $profileOpen) {
-            ProfileView(isPresented: $profileOpen, mail: $email, isLoggedIn: $isLoggedIn)
+            ProfileView(isPresented: $profileOpen, mail: $email, isLoggedIn: $isLoggedIn, changeDirection: $changeDirection)
                 .presentationDetents([.medium, .large])
+            
         }
         .font(.custom("Geist-Black", size: 24))
         .accentColor(Color.black)
@@ -58,6 +60,9 @@ struct HeaderBar: View {
                 .foregroundColor(.black),
             alignment: .bottom
         )
+        NavigationLink(destination: DireccionView(), isActive: $changeDirection) {
+            EmptyView()
+        }
     }
 }
 

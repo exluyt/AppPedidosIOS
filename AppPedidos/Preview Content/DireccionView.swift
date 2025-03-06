@@ -19,9 +19,7 @@ struct Address {
 }
 
 struct DireccionView: View {
-    @State private var profileOpen = false
     
-    // Creamos una dirección de ejemplo
     @State private var address = Address(
         email: "comotutellamas@gmail.com",
         name: "Hiromy",
@@ -46,29 +44,6 @@ struct DireccionView: View {
                     .font(.custom("Geist-Medium", size: 18))
                 
                 Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                }
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "cart.fill")
-                }
-                
-                Button {
-                    profileOpen = true
-                } label: {
-                    Image(systemName: "person.circle.fill")
-                }
-                .sheet(isPresented: $profileOpen) {
-                   // ProfileView(isPresented: $profileOpen, email: <#T##Binding<String>#>)
-                   //     .presentationDetents([.medium, .large])
-                }
-                
             }
             .font(.custom("Geist-Black", size: 24))
             .accentColor(Color.black)
