@@ -8,27 +8,26 @@
 import SwiftUI
 
 struct HeaderBar: View {
+    @ObservedObject var cartManager: CartManager
     @State private var profileOpen = false
-    @State var email: String
+    @Binding var email: String
     @Binding var isLoggedIn: Bool
-    let title:String
-    let search:Bool
-    let cart:Bool
-    let profile:Bool
+    let title: String
+    let search: Bool
+    let cart: Bool
+    let profile: Bool
+
     var body: some View {
-        HStack{
+        HStack {
             Text(title)
             Spacer()
             if search {
-                Button{
-                    
-                }label: {
+                Button {} label: {
                     Image(systemName: "magnifyingglass")
                 }
             }
             if cart {
-                Button{
-                }label: {
+                NavigationLink(destination: CartView(cartManager: cartManager)) {
                     Image(systemName: "cart.fill")
                 }
             }
@@ -44,7 +43,6 @@ struct HeaderBar: View {
                         Image(systemName: "person.circle.fill")
                     }
                 }
-
             }
         }
         .sheet(isPresented: $profileOpen) {
@@ -62,3 +60,4 @@ struct HeaderBar: View {
         )
     }
 }
+

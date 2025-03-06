@@ -8,12 +8,15 @@
 import SwiftUI
 
 
+import SwiftUI
+
 // Estructura del juego con conformidad a Codable
-struct Game: Identifiable, Codable {
-    let id = UUID()  // ID único para cada juego
+struct Game: Identifiable, Codable, Equatable {
+    let id = UUID()
     let name: String
     let rating: Double
     let image: String
+    var installed: Bool // Nuevo estado de instalación
 }
 
 // Vista de modelo que maneja la lógica de los juegos
@@ -22,11 +25,9 @@ class GameViewModel: ObservableObject {
     @Published var strategyGames = [Game]() // Para juegos de estrategia
     
     func fetchGames(appName: String = "", category: String = "") {
-        guard let url = URL(string: "http://10.100.24.95:5000/buscar_app") else { return }
+        guard let url = URL(string: "http://10.100.25.195:5000/buscar_app") else { return }
         
-        // Si appName está vacío, no lo incluyes; si category tiene valor, lo incluyes
         var parameters: [String: Any] = ["app_name": appName, "n_hits": 10]
-        
         if !category.isEmpty {
             parameters["category"] = category
         }
@@ -51,24 +52,22 @@ class GameViewModel: ObservableObject {
             guard let data = data else { return }
             
             do {
-                // Asumiendo que la respuesta es un array de juegos
                 if let responseArray = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
                     var gamesArray: [Game] = []
                     for gameData in responseArray {
-                        // Crear un objeto de tipo Game desde los datos de la respuesta
                         if let name = gameData["Nombre"] as? String,
                            let rating = gameData["Puntuación"] as? Double,
                            let image = gameData["Imagenes"] as? [String],
                            let firstImage = image.first {
-                            let game = Game(name: name, rating: rating, image: firstImage)
+                            let game = Game(name: name, rating: rating, image: firstImage, installed: false)
                             gamesArray.append(game)
                         }
                     }
                     DispatchQueue.main.async {
                         if category.isEmpty {
-                            self.games = gamesArray // Juegos sin categoría
+                            self.games = gamesArray
                         } else {
-                            self.strategyGames = gamesArray // Juegos de categoría "strategy"
+                            self.strategyGames = gamesArray
                         }
                     }
                 }
@@ -80,73 +79,69 @@ class GameViewModel: ObservableObject {
 
 struct ContentView: View {
     @State private var isProfilePresented = false
-    @State private var title = "LootBox Store"
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
     @State var email = ""
+    @StateObject var cartManager: CartManager
+
+    init() {
+        _cartManager = StateObject(wrappedValue: CartManager(userEmail: ""))
+    }
+    
     var body: some View {
-        
-        NavigationView{
+        return NavigationView {
             VStack {
-                HeaderBar(email: email, isLoggedIn: $isLoggedIn, title: title, search: true, cart: true, profile: true)
-                
-                TitleLine(title:"Suggestions for you")
-                
-                
+                HeaderBar(cartManager: cartManager, email: $email, isLoggedIn: $isLoggedIn, title: "LootBox Store", search: true, cart: true, profile: true)
+                TitleLine(title: "Suggestions for you")
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.games) { game in
-                            GameRow(game: game)
+                            GameRow(game: game, cartManager: cartManager)
                         }
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                TitleLine(title:"Strategy")
+
+                TitleLine(title: "Strategy")
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.strategyGames) { game in
-                            GameRow(game: game)
+                            GameRow(game: game, cartManager: cartManager)
                         }
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.9)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .frame(maxHeight: .infinity, alignment: .top)
             .onAppear {
-                viewModel.fetchGames(appName: "")  // Cargar juegos sin categoría para "Suggestions for you"
-                viewModel.fetchGames(category: "strategy")  // Cargar juegos de la categoría "strategy"
+                if !email.isEmpty {
+                    cartManager.updateEmail(email)
+                }
             }
-            .padding(0)
-            
         }
-
-        
     }
 }
+
 
 // Vista para mostrar cada fila de un juego
 struct GameRow: View {
     let game: Game
+    @ObservedObject var cartManager: CartManager
 
     var body: some View {
         VStack {
-            // Cargar la imagen de manera asíncrona desde la URL
             AsyncImage(url: URL(string: game.image)) { phase in
                 switch phase {
                 case .empty:
-                    // Placeholder mientras se carga la imagen
                     Image(systemName: "gamecontroller")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                 case .success(let image):
-                    // Imagen cargada con éxito
                     image.resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                 case .failure:
-                    // Error al cargar la imagen
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.red)
                         .scaledToFit()
@@ -156,26 +151,35 @@ struct GameRow: View {
                 }
             }
             
-            // Nombre del juego
             Text(game.name)
                 .font(.footnote)
                 .frame(width: 100, height: 43, alignment: .topLeading)
             
-            // Puntuación del juego
             HStack {
                 Text(String(format: "%.1f", game.rating))
                     .font(.footnote)
-                    .frame(alignment: .center)
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
                     .font(.footnote)
-                    .frame(alignment: .center)
             }
-            .frame(width:100, height: 20, alignment: .topLeading)
+            .frame(width: 100, height: 20, alignment: .topLeading)
+            
+            Button(action: {
+                cartManager.addGameToCart(game: game)
+            }) {
+                HStack {
+                    Image(systemName: cartManager.cartGames.contains(where: { $0.name == game.name }) ? "checkmark.circle.fill" : "cart.badge.plus")
+                    Text(cartManager.cartGames.contains(where: { $0.name == game.name }) ? "Instalado" : "Añadir")
+                }
+                .font(.footnote)
+                .padding(5)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
         }
     }
 }
-
 
 #Preview {
     ContentView()

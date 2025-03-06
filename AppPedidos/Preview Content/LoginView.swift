@@ -80,17 +80,12 @@ struct LoginView: View {
     func loginUser(email: String, password: String) {
         let hashedPwd = hashPassword(password: password)
         if checkLoginArray(email: email, password: hashedPwd) {
+            self.email = email
             isLoggedIn = true
             dismiss()
         } else {
-            //Auth.auth().signIn(withEmail: email, password: password) { _, error in
-                //if error == nil {
-                    isLoggedIn = true
-                    dismiss()
-                //} else {
-                    errorMessage = "Error: Usuario o contraseña incorrectos"
-                //}
-            //}
+            // Esto es cuando no está conectado con Firebase. Si fuera necesario, podemos agregar autenticación aquí.
+            errorMessage = "Error: Usuario o contraseña incorrectos"
         }
     }
     
@@ -103,6 +98,4 @@ struct LoginView: View {
         let hashed = SHA256.hash(data: passwordData)
         return hashed.map { String(format: "%02hhx", $0) }.joined()
     }
-    
-    
 }
