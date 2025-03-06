@@ -13,12 +13,12 @@ struct CartView: View {
 
     var body: some View {
         VStack {
-            Text("Carrito de compras")
+            Text("All your games")
                 .font(.largeTitle)
                 .padding()
 
             if cartManager.cartGames.isEmpty {
-                Text("Tu carrito está vacío")
+                Text("You don't have games")
                     .foregroundColor(.gray)
                     .padding()
             } else {
@@ -39,7 +39,7 @@ struct CartView: View {
                         VStack(alignment: .leading) {
                             Text(item.name)
                                 .font(.headline)
-                            Text("Estado: \(item.installed ? "Instalado" : "No instalado")")
+                            Text("Estado: \(item.installed ? "Install" : "Not installed")")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -49,7 +49,7 @@ struct CartView: View {
                         Button(action: {
                             cartManager.addGameToCart(game: item)
                         }) {
-                            Text(item.installed ? "Desinstalar" : "Instalar")
+                            Text(item.installed ? "Desinstall" : "Install")
                                 .padding(8)
                                 .background(item.installed ? Color.red : Color.green)
                                 .foregroundColor(.white)
@@ -59,6 +59,6 @@ struct CartView: View {
                 }
             }
         }
-        .navigationTitle("Carrito")
+        .navigationTitle("Your Games")
     }
 }

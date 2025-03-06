@@ -82,12 +82,16 @@ struct ContentView: View {
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
     @State var email = ""
-    @StateObject var cartManager = CartManager(userEmail: "")
+    @StateObject var cartManager: CartManager
 
+    init() {
+        _cartManager = StateObject(wrappedValue: CartManager(userEmail: ""))
+    }
+    
     var body: some View {
-        NavigationView {
+        return NavigationView {
             VStack {
-                HeaderBar(cartManager: cartManager, email: email, isLoggedIn: $isLoggedIn, title: "LootBox Store", search: true, cart: true, profile: true)
+                HeaderBar(cartManager: cartManager, email: $email, isLoggedIn: $isLoggedIn, title: "LootBox Store", search: true, cart: true, profile: true)
                 TitleLine(title: "Suggestions for you")
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -110,11 +114,9 @@ struct ContentView: View {
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .onAppear {
-                viewModel.fetchGames(appName: "")
-                viewModel.fetchGames(category: "strategy")
-            }
-            .onChange(of: email) { newEmail in
-                cartManager.updateEmail(newEmail)
+                if !email.isEmpty {
+                    cartManager.updateEmail(email)
+                }
             }
         }
     }

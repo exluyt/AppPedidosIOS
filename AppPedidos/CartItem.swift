@@ -20,7 +20,6 @@ class CartManager: ObservableObject {
 
     init(userEmail: String) {
         self.userEmail = userEmail
-        loadCart()
     }
 
     private func getFilePath() -> URL? {
@@ -34,7 +33,9 @@ class CartManager: ObservableObject {
         let cartData = CartData(userEmail: userEmail, cartGames: cartGames)
 
         do {
-            let data = try JSONEncoder().encode(cartData)
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(cartData)
             try data.write(to: fileURL)
             print("Carrito guardado correctamente en \(fileURL.path)")
         } catch {
@@ -72,8 +73,9 @@ class CartManager: ObservableObject {
     }
 
     func updateEmail(_ newEmail: String) {
-        userEmail = newEmail
-        loadCart()
+        if !newEmail.isEmpty {
+            userEmail = newEmail
+        }
     }
 }
 

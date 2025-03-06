@@ -63,6 +63,7 @@ struct LoginView: View {
     func loginUser(email: String, password: String) {
         let hashedPwd = hashPassword(password: password)
         if checkLoginArray(email: email, password: hashedPwd) {
+            self.email = email
             isLoggedIn = true
             dismiss()
         } else {

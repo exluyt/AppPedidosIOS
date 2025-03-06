@@ -10,7 +10,7 @@ import SwiftUI
 struct HeaderBar: View {
     @ObservedObject var cartManager: CartManager
     @State private var profileOpen = false
-    @State var email: String
+    @Binding var email: String
     @Binding var isLoggedIn: Bool
     let title: String
     let search: Bool
