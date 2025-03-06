@@ -14,12 +14,14 @@ struct DirectionItem: View {
             HStack {
                 
                 VStack(alignment: .leading) {
-                    Text("\(address.name)  \(address.phone)")
-                    Text("\(address.street) \(address.streetNumber)  Portal \(address.portal)")
-                    Text("\(address.postalCode)  \(address.cityProvince)")
-                    
+                    Text("\(address.street) | \(address.streetNumber) | Portal: \(address.portal)")
+                        .font(.custom("Geist-Black", size: 16))
+                    Section{
+                        Text("\(address.name)  \(address.phone)")
+                        Text("\(address.postalCode)  \(address.cityProvince)")
+                    }
+                    .font(.custom("Geist-Medium", size: 14))
                 }
-                .font(.custom("Geist-Black", size: 16))
                 .foregroundColor(Color("White"))
                 Spacer()
                 Rectangle()

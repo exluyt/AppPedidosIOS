@@ -34,8 +34,6 @@ struct DireccionView: View {
     var body: some View {
         VStack {
             VStack {
-                Text("waos")
-                    .font(.custom("Geist-Regular", size: 20))
                 DirectionItem(address: address)
                 DirectionItem(address: address)
                 DirectionItem(address: address)

@@ -4,15 +4,15 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Geist-Black</string>
-		<string>Geist-Bold</string>
-		<string>Geist-ExtraBold</string>
-		<string>Geist-ExtraLight</string>
-		<string>Geist-Light</string>
-		<string>Geist-Medium</string>
-		<string>Geist-Regular</string>
-		<string>Geist-SemiBold</string>
-		<string>Geist-Thin</string>
+		<string>Geist-Black.otf</string>
+		<string>Geist-Bold.otf</string>
+		<string>Geist-ExtraBold.otf</string>
+		<string>Geist-ExtraLight.otf</string>
+		<string>Geist-Light.otf</string>
+		<string>Geist-Medium.otf</string>
+		<string>Geist-Regular.otf</string>
+		<string>Geist-SemiBold.otf</string>
+		<string>Geist-Thin.otf</string>
 	</array>
 </dict>
 </plist>
