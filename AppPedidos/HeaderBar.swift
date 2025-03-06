@@ -46,7 +46,7 @@ struct HeaderBar: View {
             }
         }
         .sheet(isPresented: $profileOpen) {
-            ProfileView(isPresented: $profileOpen, mail: $email)
+            ProfileView(isPresented: $profileOpen, mail: $email, isLoggedIn: $isLoggedIn)
                 .presentationDetents([.medium, .large])
         }
         .font(.custom("Geist-Black", size: 24))

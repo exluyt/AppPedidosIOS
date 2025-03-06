@@ -39,7 +39,7 @@ struct CartView: View {
                         VStack(alignment: .leading) {
                             Text(item.name)
                                 .font(.headline)
-                            Text("Estado: \(item.installed ? "Install" : "Not installed")")
+                            Text("Estado: \(item.installed ? "Installed" : "Not installed")")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
