@@ -21,7 +21,11 @@ struct DireccionView: View {
         postalCode: "28080",
         cityProvince: "Madrid, España"
     )
-    
+    @StateObject var adressManager: AdressManager
+
+    init() {
+        _adressManager = StateObject(wrappedValue: AdressManager(userEmail: ""))
+    }
     var body: some View {
         VStack {
             HStack {
