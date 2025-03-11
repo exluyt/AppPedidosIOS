@@ -14,7 +14,7 @@ struct GameView: View {
     var body: some View {
         VStack {
             // Header Image
-            AsyncImage(url: URL(string: game.headerImage)) { phase in
+            /*AsyncImage(url: URL(string: game.headerImage)) { phase in
                 switch phase {
                 case .empty:
                     // Placeholder mientras se carga la imagen
@@ -39,7 +39,7 @@ struct GameView: View {
                 @unknown default:
                     EmptyView()
                 }
-            }
+            }*/
             
             // Game Info Section
             HStack(spacing: 20) {
