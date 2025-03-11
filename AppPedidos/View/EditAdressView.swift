@@ -14,10 +14,13 @@ struct EditAdressView: View {
         
         VStack{
             TitleLine(title: "Personal Info")
+            Spacer()
+                .frame(height: 20)
             TField(value: $Adress.name, name: "Full name")
             TField(value: $Adress.phone, name: "Phone number")
             TitleLine(title: "Adress")
-                
+            Spacer()
+                .frame(height: 20)
             TField(value: $Adress.cityProvince, name: "City / Province")
             TField(value: $Adress.street, name: "Street")
                 HStack{

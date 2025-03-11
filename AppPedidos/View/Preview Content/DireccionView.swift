@@ -22,7 +22,6 @@ struct DireccionView: View {
                         DirectionItem(address: item, adressManager: adressManager)
                     }
                     .scrollContentBackground(.hidden)
-                    
                     Button {
                         Editing = true
                     }label: {
@@ -30,7 +29,6 @@ struct DireccionView: View {
                     }
                     .buttonStyle(.borderedProminent)
 
-                
                 NavigationLink(destination: EditAdressView(adressManager: adressManager, Adress: .init(email: "", name: "", phone: "", street: "", streetNumber: "", portal: "", postalCode: "", cityProvince: "")), isActive: $Editing) {
                     EmptyView()
                 }
