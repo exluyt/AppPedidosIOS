@@ -6,88 +6,39 @@
 //
 
 import SwiftUI
-
+	
 struct DireccionView: View {
+    @State private var Editing = false
     @State private var profileOpen = false
-    
-    // Creamos una dirección de ejemplo
-    @State private var address = Address(
-        email: "comotutellamas@gmail.com",
-        name: "Hiromy",
-        phone: "123456789",
-        street: "Calle Falsa",
-        streetNumber: 123,
-        portal: "B",
-        postalCode: "28080",
-        cityProvince: "Madrid, España"
-    )
     @StateObject var adressManager: AdressManager
 
     init() {
         _adressManager = StateObject(wrappedValue: AdressManager(userEmail: ""))
     }
     var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "arrow.left")
-                }
-                
-                Text("Billing Addresses")
-                    .font(.custom("Geist-Medium", size: 18))
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                }
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "cart.fill")
-                }
-                
-                Button {
-                    profileOpen = true
-                } label: {
-                    Image(systemName: "person.circle.fill")
-                }
-                .sheet(isPresented: $profileOpen) {
-                   // ProfileView(isPresented: $profileOpen, email: <#T##Binding<String>#>)
-                   //     .presentationDetents([.medium, .large])
-                }
-                
-            }
-            .font(.custom("Geist-Black", size: 24))
-            .accentColor(Color.black)
-            .padding(8)
-            .overlay(
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(.black),
-                alignment: .bottom
-            )
-            
+        NavigationView{
             VStack {
-                DirectionItem(address: address)
-                DirectionItem(address: address)
-                DirectionItem(address: address)
-                DirectionItem(address: address)
-                Button {
+                    List(adressManager.adresses) { item in
+                        DirectionItem(address: item, adressManager: adressManager)
+                    }
+                    .scrollContentBackground(.hidden)
                     
-                }label: {
-                    Text("add Direction")
+                    Button {
+                        Editing = true
+                    }label: {
+                        Text("add Direction")
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                
+                NavigationLink(destination: EditAdressView(adressManager: adressManager, Adress: .init(email: "", name: "", phone: "", street: "", streetNumber: "", portal: "", postalCode: "", cityProvince: "")), isActive: $Editing) {
+                    EmptyView()
                 }
-                .buttonStyle(.borderedProminent)
+                .hidden()
             }
+            .background(Color.white)
         }
-        .padding(0)
-        Spacer()
+        
     }
 }
 

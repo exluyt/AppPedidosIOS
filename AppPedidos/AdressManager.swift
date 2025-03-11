@@ -53,6 +53,7 @@ class AdressManager: ObservableObject {
         } catch {
             print("Error al guardar la direccion: \(error.localizedDescription)")
         }
+        loadAdress()
     }
 
     // Función para cargar solo el carrito del usuario actual
@@ -75,7 +76,7 @@ class AdressManager: ObservableObject {
         } catch {
             print("Error al cargar el direccion: \(error.localizedDescription)")
         }
-    }
+    } 
 
     // Función para cargar todos los carritos desde el archivo
     private func loadAllAdress() -> [AdressData] {
@@ -91,9 +92,16 @@ class AdressManager: ObservableObject {
         }
     }
     func addAdress(adress: Adress) {
-        let newAdress = adress
-        adresses.append(newAdress)
-        saveAdress() // Guardamos el carrito después de modificarlo
+        if let index = adresses.firstIndex(where: { $0.id == adress.id })
+        {
+            adresses[index] = adress
+        }
+        else
+        {
+            let newAdress = adress
+            adresses.append(newAdress)
+        }
+        saveAdress()
     }
     // Función para actualizar el email y recargar el carrito para el nuevo email
     func updateEmail(_ newEmail: String) {

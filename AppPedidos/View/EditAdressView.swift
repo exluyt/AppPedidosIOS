@@ -35,17 +35,3 @@ struct EditAdressView: View {
         .frame(width: UIScreen.main.bounds.width * 0.9)
     }
 }
-
-#Preview {
-    @Previewable @State var address = Adress(
-        email: "comotutellamas@gmail.com",
-        name: "Hiromy",
-        phone: "123456789",
-        street: "Calle Falsa",
-        streetNumber: "123",
-        portal: "B",
-        postalCode: "28080",
-        cityProvince: "Madrid, España"
-    )
-    EditAdressView(adressManager: .init(userEmail: ""), Adress: address)
-}
