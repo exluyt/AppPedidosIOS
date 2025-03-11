@@ -90,7 +90,11 @@ class AdressManager: ObservableObject {
             return []
         }
     }
-
+    func addAdress(adress: Adress) {
+        let newAdress = adress
+        adresses.append(newAdress)
+        saveAdress() // Guardamos el carrito después de modificarlo
+    }
     // Función para actualizar el email y recargar el carrito para el nuevo email
     func updateEmail(_ newEmail: String) {
         if !newEmail.isEmpty {

@@ -12,7 +12,7 @@ struct Adress: Identifiable, Codable, Equatable {
     var name: String
     var phone: String
     var street: String
-    var streetNumber: Int
+    var streetNumber: String
     var portal: String
     var postalCode: String
     var cityProvince: String
