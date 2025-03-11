@@ -14,4 +14,5 @@ struct Game: Identifiable, Codable, Equatable {
     let rating: Double
     let image: String
     var installed: Bool // Nuevo estado de instalación
+    var headerImage: String
 }

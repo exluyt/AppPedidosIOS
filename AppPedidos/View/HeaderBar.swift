@@ -2,7 +2,7 @@
 //  HeaderBar.swift
 //  AppPedidos
 //
-//  Created by Usuario invitado on 25/2/25.
+//  @author: Arpad Kiss, Henry Illescas
 //
 
 import SwiftUI
@@ -16,7 +16,7 @@ struct HeaderBar: View {
     let search: Bool
     let cart: Bool
     let profile: Bool
-
+    
     var body: some View {
         HStack {
             Text(title)

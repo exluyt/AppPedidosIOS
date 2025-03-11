@@ -2,7 +2,7 @@
 //  ProfileView.swift
 //  AppPedidos
 //
-//  Created by Usuario invitado on 20/2/25.
+//  @author: Arpad Kiss, Henry Illescas
 //
 
 import SwiftUI
@@ -27,12 +27,12 @@ struct ProfileView: View{
                 VStack(alignment: .leading){
                     Text(username)
                     Text(mail)
-                        Button {
-                            
-                        }label: {
-                            Text(direccion)
-                            Image(systemName: "arrow.right")
-                        }
+                    Button {
+                        
+                    }label: {
+                        Text(direccion)
+                        Image(systemName: "arrow.right")
+                    }
                     
                 }
                 .font(.custom("Geist-Medium", size: 18))
@@ -41,11 +41,11 @@ struct ProfileView: View{
             .frame(width: UIScreen.main.bounds.width * 0.9 , alignment: .leading)
             
             Toggle(isOn: $is_on_notifications) {
-                    Text("Subscribe to notifications")
+                Text("Subscribe to notifications")
                     .font(.custom("Geist-Medium", size: 18))
             }.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .leading)
-                
-
+            
+            
             Spacer()
             
             Button("Log out", role: .destructive) {
@@ -58,7 +58,7 @@ struct ProfileView: View{
                     isPresented = false;
                 }
                 Button("Cancel", role: .cancel) { }
-                }
+            }
         }
     }
 }

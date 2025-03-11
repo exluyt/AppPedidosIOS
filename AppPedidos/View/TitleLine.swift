@@ -2,7 +2,7 @@
 //  TitleLine.swift
 //  AppPedidos
 //
-//  Created by Usuario invitado on 27/2/25.
+//  @author: Arpad Kiss, Henry Illescas
 //
 
 import SwiftUI

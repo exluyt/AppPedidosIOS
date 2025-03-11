@@ -2,7 +2,7 @@
 //  LoginView.swift
 //  AppPedidos
 //
-//  Created by Usuario invitado on 25/2/25.
+//  @author: Arpad Kiss, Henry Illescas
 //
 
 import SwiftUI
@@ -60,7 +60,7 @@ struct LoginView: View {
             }
             .scrollDisabled(true)
             .scrollContentBackground(.hidden)
-             
+            
             Button("Login") {
                 loginUser(email: email, password: password)
             }

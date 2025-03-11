@@ -2,7 +2,7 @@
 //  GameRow.swift
 //  AppPedidos
 //
-//  Created by Usuario invitado on 11/3/25.
+//  @author: Arpad Kiss, Henry Illescas
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 struct GameRow: View {
     let game: Game
     @ObservedObject var cartManager: CartManager
-
+    
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: game.image)) { phase in

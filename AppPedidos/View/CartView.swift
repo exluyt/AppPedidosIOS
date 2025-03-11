@@ -2,7 +2,7 @@
 //  CartView.swift
 //  AppPedidos
 //
-//  Created by Usuario invitado on 4/3/25.
+//  @author: Arpad Kiss, Henry Illescas
 //
 
 
@@ -10,13 +10,13 @@ import SwiftUI
 
 struct CartView: View {
     @ObservedObject var cartManager: CartManager
-
+    
     var body: some View {
         VStack {
             Text("All your games")
                 .font(.largeTitle)
                 .padding()
-
+            
             if cartManager.cartGames.isEmpty {
                 Text("You don't have games")
                     .foregroundColor(.gray)
@@ -35,7 +35,7 @@ struct CartView: View {
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(.gray)
                         }
-
+                        
                         VStack(alignment: .leading) {
                             Text(item.name)
                                 .font(.headline)
