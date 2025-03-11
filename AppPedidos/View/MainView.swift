@@ -2,8 +2,9 @@
 //  MainView.swift
 //  AppPedidos
 //
-//  @author: Arpad Kiss, Henry Illescas
+//  Created by Usuario invitado on 11/3/25.
 //
+
 
 import SwiftUI
 
@@ -62,6 +63,7 @@ struct MainView: View {
                     viewModel.loadGames()
                     viewModel.loadStrategyGames()
                     viewModel.loadTopGames()
+                    print("Juegos de estrategia: \(viewModel.strategyGames)")
                 }
             }
         }

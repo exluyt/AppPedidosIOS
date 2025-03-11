@@ -18,7 +18,7 @@ class GameViewModel: ObservableObject {
     }
     
     func loadStrategyGames() {
-        gameController.fetchGames(how: "buscar", gameViewModel: self)
+        gameController.fetchGames(appName: "", category: "Strategy", how: "buscar", gameViewModel: self)
     }
     
     func loadTopGames() {
