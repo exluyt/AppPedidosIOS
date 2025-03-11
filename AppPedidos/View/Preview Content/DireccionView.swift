@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-struct Address {
-    let email: String
-    let name: String
-    let phone: String
-    let street: String
-    let streetNumber: Int
-    let portal: String
-    let postalCode: String
-    let cityProvince: String
-}
-
 struct DireccionView: View {
     @State private var profileOpen = false
     
