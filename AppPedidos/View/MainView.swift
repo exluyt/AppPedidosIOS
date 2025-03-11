@@ -24,7 +24,6 @@ struct MainView: View {
             ScrollView {
                 VStack {
                     HeaderBar(cartManager: cartManager, email: $email, isLoggedIn: $isLoggedIn, title: "LootBox Store", search: true, cart: true, profile: true)
-                    
                     TitleLine(title: "Top Games")
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {

@@ -14,10 +14,13 @@ struct EditAdressView: View {
         
         VStack{
             TitleLine(title: "Personal Info")
+            Spacer()
+                .frame(height: 20)
             TField(value: $Adress.name, name: "Full name")
             TField(value: $Adress.phone, name: "Phone number")
             TitleLine(title: "Adress")
-                
+            Spacer()
+                .frame(height: 20)
             TField(value: $Adress.cityProvince, name: "City / Province")
             TField(value: $Adress.street, name: "Street")
                 HStack{
@@ -34,18 +37,4 @@ struct EditAdressView: View {
         .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
         .frame(width: UIScreen.main.bounds.width * 0.9)
     }
-}
-
-#Preview {
-    @Previewable @State var address = Adress(
-        email: "comotutellamas@gmail.com",
-        name: "Hiromy",
-        phone: "123456789",
-        street: "Calle Falsa",
-        streetNumber: "123",
-        portal: "B",
-        postalCode: "28080",
-        cityProvince: "Madrid, España"
-    )
-    EditAdressView(adressManager: .init(userEmail: ""), Adress: address)
 }

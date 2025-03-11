@@ -15,6 +15,7 @@ struct ProfileView: View{
     @State private var direccion = "Add Direction"
     @State private var is_presented = false;
     @Binding var isLoggedIn: Bool
+    @State var toDirection = false
     var body: some View {
         VStack{
             Text("Profile")
@@ -28,12 +29,15 @@ struct ProfileView: View{
                     Text(username)
                     Text(mail)
                     Button {
-                        
+                        toDirection = true
                     }label: {
                         Text(direccion)
                         Image(systemName: "arrow.right")
                     }
-                    
+                    NavigationLink(destination: DireccionView()) {
+                        EmptyView()
+                    }
+                    .hidden()
                 }
                 .font(.custom("Geist-Medium", size: 18))
                 
