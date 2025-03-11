@@ -14,7 +14,7 @@ class GameController {
     func fetchGames(appName: String = "", category: String = "", how: String = "", gameViewModel: GameViewModel) {
         var url: URL?
         
-        if how == "buscar" {
+        if how == "buscar" || how == "strategy" {
             url = URL(string: "http://10.100.28.160:5000/buscar_app")
         } else if how == "top" {
             url = URL(string: "http://10.100.28.160:5000/info_app")
@@ -61,22 +61,25 @@ class GameController {
                         if let name = gameData["Nombre"] as? String,
                            let rating = gameData["Puntuacion"] as? Double,
                            let image = gameData["Imagenes"] as? [String],
-                           let headerIamge = gameData["HeaderImage"] as? String,
+                           //let headerIamge = gameData["HeaderImage"] as? String,
                            let firstImage = image.first {
-                            let game = Game(name: name, rating: rating, image: firstImage, installed: false, headerImage: headerIamge)
+                            let game = Game(name: name, rating: rating, image: firstImage, installed: false/*, headerImage: headerIamge*/)
                             gamesArray.append(game)
                         }
                     }
                     DispatchQueue.main.async {
-                        if category.isEmpty {
-                            gameViewModel.games = gamesArray
-                        } else {
+                        if how == "buscar" {
+                            gameViewModel.suggestedGames = gamesArray
+                        } else if how == "top" {
+                            gameViewModel.topGames = gamesArray
+                        } else if how == "strategy" {
                             gameViewModel.strategyGames = gamesArray
                         }
                     }
                 }
+            } catch {
+                print("Error al procesar los datos: \(error.localizedDescription)")
             }
         }.resume()
     }
 }
-

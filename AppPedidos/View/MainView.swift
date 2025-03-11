@@ -2,8 +2,9 @@
 //  MainView.swift
 //  AppPedidos
 //
-//  @author: Arpad Kiss, Henry Illescas
+//  Created by Usuario invitado on 11/3/25.
 //
+
 
 import SwiftUI
 
@@ -27,7 +28,7 @@ struct MainView: View {
                     TitleLine(title: "Top Games")
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach(viewModel.games) { game in
+                            ForEach(viewModel.topGames) { game in
                                 GameView(game: game, cartManager: cartManager)
                             }
                         }
@@ -37,22 +38,21 @@ struct MainView: View {
                     TitleLine(title: "Suggestions for you")
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach(viewModel.games) { game in
+                            ForEach(viewModel.suggestedGames) { game in
                                 GameRow(game: game, cartManager: cartManager)
                             }
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width * 0.9)
                     
-                    TitleLine(title: "Strategy")
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(viewModel.strategyGames) { game in
-                                GameRow(game: game, cartManager: cartManager)
-                            }
-                        }
-                    }
-                    .frame(width: UIScreen.main.bounds.width * 0.9)
+                 TitleLine(title: "Strategy")
+                  ScrollView(.horizontal, showsIndicators: false) {
+                      HStack {
+                          ForEach(viewModel.strategyGames) { game in
+                               GameRow(game: game, cartManager: cartManager)
+                           }
+                       }
+                    }.frame(width: UIScreen.main.bounds.width * 0.9)
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
                 .onAppear {
@@ -60,8 +60,8 @@ struct MainView: View {
                         cartManager.updateEmail(email)
                     }
                     viewModel.loadGames()
-                    viewModel.loadStrategyGames()
                     viewModel.loadTopGames()
+                    viewModel.loadStrategyGames()
                 }
             }
         }

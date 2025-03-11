@@ -8,8 +8,9 @@
 import SwiftUI
 
 class GameViewModel: ObservableObject {
-    @Published var games: [Game] = []
+    @Published var topGames: [Game] = []
     @Published var strategyGames: [Game] = []
+    @Published var suggestedGames: [Game] = []
     
     private var gameController = GameController()
 
@@ -18,7 +19,7 @@ class GameViewModel: ObservableObject {
     }
     
     func loadStrategyGames() {
-        gameController.fetchGames(how: "buscar", gameViewModel: self)
+        gameController.fetchGames(category: "Strategy", how: "strategy", gameViewModel: self)
     }
     
     func loadTopGames() {
