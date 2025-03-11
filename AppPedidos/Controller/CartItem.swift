@@ -8,11 +8,6 @@
 
 import Foundation
 
-struct CartData: Codable {
-    let userEmail: String
-    var cartGames: [Game]
-}
-
 class CartManager: ObservableObject {
     @Published var cartGames: [Game] = []
     var userEmail: String
