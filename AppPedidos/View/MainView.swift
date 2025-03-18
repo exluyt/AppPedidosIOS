@@ -13,6 +13,7 @@ struct MainView: View {
     @StateObject var viewModel = GameViewModel()
     @State var isLoggedIn = false
     @State var email = ""
+    @State var hasAppeard = false
     @StateObject var cartManager: CartManager
     
     init() {
@@ -28,7 +29,7 @@ struct MainView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewModel.topGames) { game in
-                                GameView(game: game, cartManager: cartManager)
+                                GameView(game: game, cartManager: cartManager, isLoggedIn: $isLoggedIn)
                             }
                         }
                     }
@@ -38,7 +39,7 @@ struct MainView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewModel.suggestedGames) { game in
-                                GameRow(game: game, cartManager: cartManager)
+                                GameRow(game: game, cartManager: cartManager, isLoggedIn: $isLoggedIn)
                             }
                         }
                     }
@@ -48,7 +49,7 @@ struct MainView: View {
                   ScrollView(.horizontal, showsIndicators: false) {
                       HStack {
                           ForEach(viewModel.strategyGames) { game in
-                               GameRow(game: game, cartManager: cartManager)
+                               GameRow(game: game, cartManager: cartManager, isLoggedIn: $isLoggedIn)
                            }
                        }
                     }.frame(width: UIScreen.main.bounds.width * 0.9)
@@ -58,9 +59,12 @@ struct MainView: View {
                     if !email.isEmpty {
                         cartManager.updateEmail(email)
                     }
-                    viewModel.loadGames()
-                    viewModel.loadTopGames()
-                    viewModel.loadStrategyGames()
+                    if !hasAppeard {
+                        viewModel.loadGames()
+                        viewModel.loadTopGames()
+                        viewModel.loadStrategyGames()
+                        hasAppeard = true
+                    }
                 }
             }
         }

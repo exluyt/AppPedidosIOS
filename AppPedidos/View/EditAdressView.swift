@@ -10,6 +10,7 @@ import SwiftUI
 struct EditAdressView: View {
     @ObservedObject var adressManager: AdressManager
     @State var Adress: Adress
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         
         VStack{
@@ -31,6 +32,7 @@ struct EditAdressView: View {
             Spacer()
             Button("Add direction") {
                 adressManager.addAdress(adress: Adress)
+                dismiss()
             }
             .buttonStyle(.borderedProminent)
         }

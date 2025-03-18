@@ -15,7 +15,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var errorMessage = ""
     @Environment(\.dismiss) var dismiss
-    private let login: [String: String] = ["ex@gmail.com": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", "kiss@gmail.com" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4" ]
+    private let login: [String: String] = ["dragonquest@gmail.com": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", "triggersniper@gmail.com" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", "casualmente88@gmail.com" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", "speedracerpro@gmail.com" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4" ]
     
     var body: some View {
         VStack {

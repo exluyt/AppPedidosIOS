@@ -10,6 +10,7 @@ import SwiftUI
 struct GameRow: View {
     let game: Game
     @ObservedObject var cartManager: CartManager
+    @Binding var isLoggedIn: Bool
     
     var body: some View {
         VStack {
@@ -56,10 +57,11 @@ struct GameRow: View {
                 }
                 .font(.footnote)
                 .padding(5)
-                .background(Color.blue)
+                .background(isLoggedIn ? Color.blue : Color.gray)
                 .foregroundColor(.white)
                 .cornerRadius(10)
             }
+            .disabled(!isLoggedIn)
         }
     }
 }

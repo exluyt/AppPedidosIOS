@@ -30,6 +30,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		AC3893372D550AA0005AC748 /* AppPedidos */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AppPedidos;
+			sourceTree = "<group>";
+		};
 		AC3893482D550AA1005AC748 /* AppPedidosTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AppPedidosTests;
@@ -38,11 +43,6 @@
 		AC3893522D550AA1005AC748 /* AppPedidosUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AppPedidosUITests;
-			sourceTree = "<group>";
-		};
-		ACE6BD792D7783530023939C /* AppPedidos */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AppPedidos;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +75,7 @@
 		AC38932C2D550AA0005AC748 = {
 			isa = PBXGroup;
 			children = (
-				ACE6BD792D7783530023939C /* AppPedidos */,
+				AC3893372D550AA0005AC748 /* AppPedidos */,
 				AC3893482D550AA1005AC748 /* AppPedidosTests */,
 				AC3893522D550AA1005AC748 /* AppPedidosUITests */,
 				AC3893362D550AA0005AC748 /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				ACE6BD792D7783530023939C /* AppPedidos */,
+				AC3893372D550AA0005AC748 /* AppPedidos */,
 			);
 			name = AppPedidos;
 			packageProductDependencies = (
@@ -195,8 +195,6 @@
 			);
 			mainGroup = AC38932C2D550AA0005AC748;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AC3893362D550AA0005AC748 /* Products */;
 			projectDirPath = "";
@@ -397,7 +395,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AppPedidos/View/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -425,7 +422,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AppPedidos/View/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

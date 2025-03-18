@@ -102,8 +102,12 @@ class CartManager: ObservableObject {
     // Función para actualizar el email y recargar el carrito para el nuevo email
     func updateEmail(_ newEmail: String) {
         if !newEmail.isEmpty {
-            userEmail = newEmail
-            loadCart() // Recargamos el carrito para el nuevo email
+            // Si el correo es diferente, actualizamos y recargamos el carrito
+            if userEmail != newEmail {
+                userEmail = newEmail
+                // Recargamos el carrito para el nuevo email
+                loadCart()
+            }
         }
     }
 }

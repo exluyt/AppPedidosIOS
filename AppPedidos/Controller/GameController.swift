@@ -8,16 +8,16 @@
 import SwiftUI
 
 class GameController {
-    private let baseURL = "http://10.100.28.160:5000/buscar_app"
+    private let baseURL = "http://10.100.9.158:5000/buscar_app"
     
     // Ahora la función acepta una referencia a GameViewModel
     func fetchGames(appName: String = "", category: String = "", how: String = "", gameViewModel: GameViewModel) {
         var url: URL?
         
         if how == "buscar" || how == "strategy" {
-            url = URL(string: "http://10.100.28.160:5000/buscar_app")
+            url = URL(string: "http://10.100.9.158:5000/buscar_app")
         } else if how == "top" {
-            url = URL(string: "http://10.100.28.160:5000/info_app")
+            url = URL(string: "http://10.100.9.158:5000/info_app")
         }
         
         guard let validUrl = url else {

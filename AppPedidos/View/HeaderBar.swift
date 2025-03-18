@@ -17,22 +17,32 @@ struct HeaderBar: View {
     let cart: Bool
     let profile: Bool
     
+    @StateObject var userManager = UserManager()
+    
     var body: some View {
         HStack {
             Text(title)
             Spacer()
+            
+            // Botón de búsqueda
             if search {
-                Button {} label: {
-                    Image(systemName: "magnifyingglass")
-                }
             }
+            
+            // Botón de carrito
             if cart {
-                NavigationLink(destination: CartView(cartManager: cartManager)) {
-                    Image(systemName: "cart.fill")
+                if !isLoggedIn {
+                    // Si no está logueado, no mostrar el carrito
+                } else {
+                    NavigationLink(destination: CartView(cartManager: cartManager)) {
+                        Image(systemName: "cart.fill")
+                    }
                 }
             }
+            
+            // Botón de perfil
             if profile {
                 if !isLoggedIn {
+                    // Si no está logueado, mostrar el botón de login
                     NavigationLink(destination: LoginView(isLoggedIn: $isLoggedIn, email: $email)) {
                         Image(systemName: "person.circle.fill")
                     }
@@ -46,8 +56,15 @@ struct HeaderBar: View {
             }
         }
         .sheet(isPresented: $profileOpen) {
-            ProfileView(isPresented: $profileOpen, mail: $email, isLoggedIn: $isLoggedIn)
-                .presentationDetents([.medium, .large])
+            // Usar el UserManager para cargar el usuario
+            if let user = userManager.loadUser(email: email) {
+                // Envolvemos ProfileView en un NavigationView para la navegación
+                NavigationView {
+                    ProfileView(isPresented: $profileOpen, mail: $email, isLoggedIn: $isLoggedIn)
+                        .navigationBarTitle("Profile", displayMode: .inline) // Título en la barra de navegación
+                        .presentationDetents([.medium, .large])
+                }
+            }
         }
         .font(.custom("Geist-Black", size: 24))
         .accentColor(Color.black)
@@ -60,4 +77,3 @@ struct HeaderBar: View {
         )
     }
 }
-
